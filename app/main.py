@@ -51,7 +51,6 @@ async def remove_task(task_id: int):
     success = delete_task(task_id)
     if not success:
         raise HTTPException(status_code=404, detail="Задача не найдена")
-    return {"message": "Задача удалена"}
 
 
 @app.get("/tasks/status/completed", response_model=list[TaskResponse])
