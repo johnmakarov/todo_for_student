@@ -7,7 +7,8 @@ from app.tasks import (
     get_tasks_count,
     add_task,
     delete_task,
-    mark_task_completed
+    mark_task_completed,
+    clear_all_tasks,
 )
 from app.schemas import TaskCreate, TaskResponse
 
