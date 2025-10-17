@@ -3,6 +3,11 @@ from app.tasks import (
     add_task,
     mark_task_completed,
 )
+from random import randint
+from faker import Faker
+import pytest
+
+fake = Faker()
 
 
 def test_return_none_if_id_not_found():
@@ -10,13 +15,17 @@ def test_return_none_if_id_not_found():
     assert result is None
 
 
-def test_return_id_task():
-    add_task("sdfsfdfdsdsf")
+@pytest.fixture
+def add_new_task() -> dict:
+    return add_task(description=f"{fake.name()}_{randint(1, 100)}")
+
+
+def test_return_id_task(add_new_task):
     result = get_task_by_id(1)
     assert result is not None
-    assert result["id"] == 1
-    assert result["completed"] == False
-    assert result["description"] == "sdfsfdfdsdsf"
+    assert result["id"] == add_new_task["id"]
+    assert result["completed"] == add_new_task["completed"]
+    assert result["description"] == add_new_task["description"]
 
 
 def test_if_task_completed():
