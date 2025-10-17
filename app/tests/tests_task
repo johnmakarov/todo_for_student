@@ -1,0 +1,42 @@
+import pytest
+from tasks.py import add_task, get_all_tasks, get_task_by_id, mark_task_completed, delete_task, get_completed_tasks, get_pending_tasks, clear_all_tasks, update_task_description,
+get_tasks_count
+
+def test_return_none_if_id_not_found():
+  "Проверка что вернет None если нет id"
+  mock_task = [{"id": 1, "title": "Test"}]
+
+  result = get_task_by_id(999)
+  assert result is None
+
+def test_return_id_task():
+  "Проверка что вернет id"
+  mock_task = [
+  {"id": 1, "title": "Test1"},
+  {"id": 2, "title": "Test2"}
+  ]
+
+  result = get_task_by_id(2)
+
+  assert result is not None
+  assert result["id"] == 2
+  assert result["title"] == "Test2"
+
+def test_if_task_completed():
+  "Проверка выполнена ли задача"
+  mock_task = [{"id": 1, "title": "Test", "completed": False}]
+  result = mark_task_completed(1)
+  assert result == 1
+  assert mock_tasks[0]["completed"] is True
+
+def test_if_task_deleted(monkeypatch):
+  "Проверка что задача удалена"
+  mock_tasks = [{"id": 1, "title": "Test"}]
+  monkeypatch.setattr("app.tasks.tasks", mock_tasks)
+  
+  from app.tasks import delete_task
+  result = delete_task(1)
+  assert result is True
+  assert mock_tasks == []
+
+
