@@ -5,7 +5,6 @@ from app.tasks import (
 )
 
 
-# PASSED
 def test_return_none_if_id_not_found():
     result = get_task_by_id(999)
     assert result is None
