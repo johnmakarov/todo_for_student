@@ -1,7 +1,7 @@
 tasks = []
 
 
-def add_task(description):
+def add_task(description: str):
     """Добавляет новую задачу в список"""
     if not description or not description.strip():
         raise ValueError("Описание задачи не может быть пустым")
