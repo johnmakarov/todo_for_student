@@ -65,15 +65,14 @@ def api_request(
     params=None,
     json=None,
     headers=None,
-    expected_status=None
+    expected_status=None,
 ) -> dict:
-    
     if expected_status is None:
-        if method.lower() == 'get':
+        if method.lower() == "get":
             expected_status = 200
-        elif method.lower() == 'post':
+        elif method.lower() == "post":
             expected_status = 201
-        elif method.lower() == 'delete':
+        elif method.lower() == "delete":
             expected_status = 204
 
     url = f"{base_api_url}{endpoint}"
@@ -85,8 +84,8 @@ def api_request(
     response_attaching(response)
 
     assert response.status_code == expected_status, (
-            f"Expected status {expected_status}, but got {response.status_code}."
-            f"Response: {response.text}"
+        f"Expected status {expected_status}, but got {response.status_code}."
+        f"Response: {response.text}"
     )
 
     return response.json()

@@ -1,3 +1,5 @@
+import requests
+
 from .utils import api_request
 from http import HTTPMethod
 
@@ -14,3 +16,8 @@ def test_create_task():
         method=HTTPMethod.POST, endpoint="/tasks", json={"description": "string"}
     )
     assert created_task == {"id": 1, "description": "string", "completed": False}
+
+def test_get_tasks(add_new_task_api):
+    tasks = requests.get("http://127.0.0.1:8000/tasks/")
+    assert tasks.status_code == 200
+    assert tasks.json() == [add_new_task_api]
