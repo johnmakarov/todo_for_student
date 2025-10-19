@@ -3,7 +3,7 @@ import requests
 
 def test_create_task():
     requests.delete("http://127.0.0.1:8000/tasks/")
-    
+
     created_task = requests.post(
         "http://127.0.0.1:8000/tasks/", json={"description": "string"}
     )

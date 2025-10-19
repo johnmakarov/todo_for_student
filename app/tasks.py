@@ -30,7 +30,7 @@ def mark_task_completed(task_id):
     task = get_task_by_id(task_id)
     if task:
         task["completed"] = True
-        return task 
+        return task
     return None
 
 

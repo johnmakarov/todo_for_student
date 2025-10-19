@@ -13,4 +13,4 @@ def add_new_task():
     logging.info(f"Create task: {task}")
     yield task
     clear_all_tasks()
-    logging.info(f"Clear all tasks")
+    logging.info("Clear all tasks")
