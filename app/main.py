@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from app.tasks import (
+from tasks import (
     get_all_tasks,
     get_completed_tasks,
     get_pending_tasks,
@@ -10,11 +10,23 @@ from app.tasks import (
     mark_task_completed,
     clear_all_tasks,
 )
-from app.schemas import TaskCreate, TaskResponse
-
+from schemas import TaskCreate, TaskResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Task Manager API", version="1.0.0")
 
+origins = [
+    "http://localhost:5173", 
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():

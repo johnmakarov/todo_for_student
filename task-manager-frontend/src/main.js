@@ -1,0 +1,7 @@
+import { createApp } from 'vue'
+import './assets/css/base.css'
+import './assets/css/components.css'
+import './assets/css/utilities.css'
+import App from './App.vue'
+
+createApp(App).mount('#app')
