@@ -15,8 +15,17 @@ dependencies = [
     "faker (>=37.11.0,<38.0.0)",
     "mypy (>=1.18.2,<2.0.0)",
     "requests (>=2.32.5,<3.0.0)",
+    "allure-pytest (>=2.15.0,<3.0.0)",
 ]
 
+[tool.pytest.ini_options]
+addopts = [
+    "--log-date-format=%Y-%m-%d %H:%M:%S",
+    "--log-format=%(asctime)s %(levelname)s %(message)s", 
+    "--log-cli-level=INFO", 
+    "--alluredir=allure-results",
+    "--clean-alluredir"
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
